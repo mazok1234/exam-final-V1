@@ -1,4 +1,4 @@
-Creer les Bases:
+Creer les Bases:(ok)
     -membre (id_membre, nom , date de naissance, genre, émail, ville, mdp,image_profil)
     -categorie_objet (id_categorie, nom_categorie )
     -objet (id_objet , nom_objet , id_categorie, id_membre)
@@ -6,7 +6,7 @@ Creer les Bases:
     -emprunt(id_emprunt, id_objet, id_membre, date_emprunt, date_retour)
 
 
-Inserer donnees:
+Inserer donnees:(ok)
     -4 membres
     -4 catégories ( esthétique, bricolage, mécanique , cuisine )
     -10 objets par membre à répartir sur les catégories
@@ -14,5 +14,10 @@ Inserer donnees:
 
 Creer les pages:
     -Login et inscription
+        **creer function.php (ok)
+            _creer function : (OK)
+                &verifier_utilisateur
+                & connecter_utilisateur
+                &inserer_utilisateur et recuperer_utilisateur OK 
     -Liste des objets , (avec date de retour si emprunt en cours )
     -Filtre par catégorie
