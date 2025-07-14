@@ -90,8 +90,45 @@
       } else {
           echo '<p>Aucun objet trouvé.</p>';
       }
+
+      echo '<hr><h4 class="mt-4">Mes emprunts en cours</h4>';
+      $emprunts = get_liste_emprunts($bdd, $id_membre);
+      if ($emprunts && mysqli_num_rows($emprunts) > 0) {
+          echo '<div class="row">';
+          while ($emp = mysqli_fetch_assoc($emprunts)) {
+              $sqlObj = "SELECT nom_objet FROM emprunter_objet WHERE id_objet = '" . $emp['id_objet'] . "'";
+              $resObj = mysqli_query($bdd, $sqlObj);
+              $obj = mysqli_fetch_assoc($resObj);
+              $nom_objet = $obj ? $obj['nom_objet'] : 'Objet inconnu';
+              echo '<div class="col-md-6 mb-3">';
+              echo '<div class="card">';
+              echo '<div class="card-body">';
+              echo '<h5 class="card-title">' . htmlspecialchars($nom_objet) . '</h5>';
+              echo '<p class="card-text">Emprunté le <strong>' . htmlspecialchars($emp['date_emprunt']) . '</strong> jusqu\'au <strong>' . htmlspecialchars($emp['date_retour']) . '</strong></p>';
+              echo '<a href="../pages/retour.php?id_emprunt=' . $emp['id_emprunt'] . '" class="btn btn-warning">Retourner</a>';
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
+          }
+          echo '</div>';
+      } else {
+          echo '<p>Aucun emprunt en cours.</p>';
+      }
       ?>
     </div>
+  <hr>
+  <div class="row mt-4">
+    <div class="col-md-6">
+      <div class="alert alert-danger">
+        Nombre d'objets abîmés : <strong><?php echo get_nombre_abimes($bdd, $id_membre); ?></strong>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="alert alert-success">
+        Nombre d'objets non abîmés : <strong><?php echo get_nombre_non_abimes($bdd, $id_membre); ?></strong>
+      </div>
+    </div>
+  </div>
   <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </body>
 </html>

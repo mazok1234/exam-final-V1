@@ -29,4 +29,8 @@ Version 2
 
     -amelioration du design maximum
     -affichage image de chaque objet 
+
+
+Version 3
+    -bouton retourner et l'emprunt en cours ainsi le nombre d'abime ou pas(ok)
     
