@@ -51,60 +51,39 @@
     </div>
     <div class="row mt-3">
       <?php
+<<<<<<< HEAD
+      $resultat = null;
+      if (!isset($_POST['nomCat']) || empty($_POST['nomCat'])) {
+=======
       if (!isset($_POST['nomCat']) || $_POST['nomCat'] == 'tous'){
+>>>>>>> 48f8ef35b9a3767aba9b99ae2c68f8fa7e1bc816
           $resultat = lister_objets_membre($bdd, $id_membre);
-          if ($resultat && mysqli_num_rows($resultat) > 0) {
-              while ($objet = mysqli_fetch_assoc($resultat)) {
-                  echo '<div class="col-md-4 mb-3">';
-                  echo '<div class="card h-100">';
-                  echo '<div class="card-body">';
-                  echo '<h5 class="card-title">' . htmlspecialchars($objet['nom_objet']) . '</h5>';
-                  if($objet['date_retour'] != NULL  ) {
-                      if($objet['nom_emprunteur'] == NULL) {
-                          $objet['nom_membre'] = 'Indisponible';
-                      } else {
-                          $objet['nom_membre'] = $objet['nom_emprunteur'];
-                      }
-                      echo '<p class="card-text">Emprunté par : ' . htmlspecialchars($objet['nom_membre']) . '</p>';
-                      echo '<p class="card-text">Date de retour : ' . htmlspecialchars($objet['date_retour']) . '</p>';
-                  } else {
-                      echo '<p class="card-text">Disponible</p>';
-                  }   
-                  echo '</div>';
-                  echo '</div>';
-                  echo '</div>';
-              }
-          } else {
-              echo '<p>Aucun objet trouvé.</p>';
-          }
-      }
-      if (isset($_POST['nomCat'])){
+      } else {
           $categorie = $_POST['nomCat'];
           $resultat = liste_objets_categorie($bdd, $categorie);
-          if (mysqli_num_rows($resultat) > 0) {
-              while ($objet = mysqli_fetch_assoc($resultat)) {
-                  echo '<div class="col-md-4 mb-3">';
-                  echo '<div class="card h-100">';
-                  echo '<div class="card-body">';
-                  echo '<h5 class="card-title">' . htmlspecialchars($objet['nom_objet']) . '</h5>';
-                  if($objet['date_retour'] != NULL  ) {
-                      if($objet['nom_emprunteur'] == NULL) {
-                          $objet['nom_membre'] = 'Indisponible';
-                      } else {
-                          $objet['nom_membre'] = $objet['nom_emprunteur'];
-                      }
-                      echo '<p class="card-text">Emprunté par : ' . htmlspecialchars($objet['nom_membre']) . '</p>';
-                      echo '<p class="card-text">Date de retour : ' . htmlspecialchars($objet['date_retour']) . '</p>';
-                  } else {
-                      echo '<p class="card-text">Disponible</p>';
-                  }   
-                  echo '</div>';
-                  echo '</div>';
-                  echo '</div>';
+      }
+      if ($resultat && mysqli_num_rows($resultat) > 0) {
+          while ($objet = mysqli_fetch_assoc($resultat)) {
+              echo '<div class="col-md-4 mb-3">';
+              echo '<div class="card h-100">';
+              echo '<div class="card-body">';
+              if (!empty($objet['image_objet'])) {
+                  echo '<img src="../assets/images/' . htmlspecialchars($objet['image_objet']) . '" class="img-fluid mb-2" style="max-height:120px; border-radius:1rem;">';
               }
-          } else {
-              echo '<p>Aucun objet trouvé.</p>';
+              echo '<h5 class="card-title">' . htmlspecialchars($objet['nom_objet']) . '</h5>';
+              if($objet['date_retour'] != NULL  ) {
+                  $nom_emprunteur = $objet['nom_emprunteur'] ?? 'Indisponible';
+                  echo '<p class="card-text">Emprunté par : ' . htmlspecialchars($nom_emprunteur) . '</p>';
+                  echo '<p class="card-text">Date de retour : ' . htmlspecialchars($objet['date_retour']) . '</p>';
+              } else {
+                  echo '<p class="card-text">Disponible</p>';
+              }
+              echo '</div>';
+              echo '</div>';
+              echo '</div>';
           }
+      } else {
+          echo '<p>Aucun objet trouvé.</p>';
       }
       ?>
     </div>
