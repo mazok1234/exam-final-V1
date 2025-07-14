@@ -38,10 +38,32 @@ function lister_objets_membre($bdd, $id_membre) {
 }
 
 function liste_objets_categorie($bdd, $categorie){
-    // Correction : utiliser la bonne vue et vérifier la requête
     $sql = "SELECT * FROM vue_objets_membre WHERE nom_categorie = '%s';";
     $sql = sprintf($sql, $categorie);
     $resultat = mysqli_query($bdd, $sql);
     return $resultat;
 }
+
+function recuperer_dernier_id_objet($bdd){
+    $sql = "SELECT COUNT(id_objet) AS nbr FROM emprunter_objet;";
+    $resultat = mysqli_query($bdd, $sql);
+    $donnee = mysqli_fetch_assoc($resultat);
+    return $donnee['nbr'];
+}
+
+function ajouter_objet($bdd, $nom, $id_membre, $id_categorie, $nomImage, $idObjet){
+    $sql1 = "INSERT INTO emprunter_objet (nom_objet, id_membre, id_categorie) 
+             VALUES ('%s', '%s', '%s');";
+    $sql1 = sprintf($sql1, $nom, $id_membre, $id_categorie);
+    $resultat1 = mysqli_query($bdd, $sql1);
+
+    $sql2 = "INSERT INTO emprunter_images_objet (id_objet, nom_image) 
+             VALUES ('%s', '%s');";
+    $sql2 = sprintf($sql2, $idObjet, $nomImage);
+    $resultat2 = mysqli_query($bdd, $sql2);
+
+    return $resultat1 && $resultat2;
+
+}
+
 ?>

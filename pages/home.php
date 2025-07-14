@@ -33,18 +33,30 @@
     </div>
     <hr>
     <h4 class="mt-4">Liste des objets</h4>
+    <div class="row mt-3 align-items-center">
+        <div class="col-auto d-flex align-items-center">
+            <form action="../pages/home.php" method="post" class="d-flex align-items-center">
+                <select name="nomCat" id="nomCat" class="form-select me-2">
+                    <option value="tous">Tous</option>
+                    <?php while ($donnee = mysqli_fetch_assoc($categorie)) { ?>
+                        <option value="<?php echo $donnee['nom_categorie'];?>"><?php echo $donnee['nom_categorie'];?></option>
+                    <?php } ?>
+                </select>
+                <input type="submit" value="Filtrer" class="btn btn-secondary me-2">
+            </form>
+        </div>
+        <div class="">
+            <a href="../pages/ajout.php" class="btn btn-primary ms-2">Ajouter un objet</a>
+        </div>
+    </div>
     <div class="row mt-3">
-        <form action="../pages/home.php" method="post">
-            <select name="nomCat" id="nomCat">
-                <?php while ($donnee = mysqli_fetch_assoc($categorie)) { ?>
-                    <option value="<?php echo $donnee['nom_categorie'];?>"><?php echo $donnee['nom_categorie'];?></option>
-                <?php } ?>
-            </select>
-            <input type="submit" value="Filtrer">
-        </form>
       <?php
+<<<<<<< HEAD
       $resultat = null;
       if (!isset($_POST['nomCat']) || empty($_POST['nomCat'])) {
+=======
+      if (!isset($_POST['nomCat']) || $_POST['nomCat'] == 'tous'){
+>>>>>>> 48f8ef35b9a3767aba9b99ae2c68f8fa7e1bc816
           $resultat = lister_objets_membre($bdd, $id_membre);
       } else {
           $categorie = $_POST['nomCat'];
@@ -74,7 +86,7 @@
           echo '<p>Aucun objet trouvé.</p>';
       }
       ?>
-  </div>
+    </div>
   <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </body>
 </html>
