@@ -10,7 +10,11 @@
     $categorie = liste_categories($bdd);
 
     $donnee = mysqli_fetch_assoc(recuperer_utilisateur($bdd, $id_membre));
+
+
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,12 +55,8 @@
     </div>
     <div class="row mt-3">
       <?php
-<<<<<<< HEAD
       $resultat = null;
       if (!isset($_POST['nomCat']) || empty($_POST['nomCat'])) {
-=======
-      if (!isset($_POST['nomCat']) || $_POST['nomCat'] == 'tous'){
->>>>>>> 48f8ef35b9a3767aba9b99ae2c68f8fa7e1bc816
           $resultat = lister_objets_membre($bdd, $id_membre);
       } else {
           $categorie = $_POST['nomCat'];
@@ -75,8 +75,13 @@
                   $nom_emprunteur = $objet['nom_emprunteur'] ?? 'Indisponible';
                   echo '<p class="card-text">Emprunté par : ' . htmlspecialchars($nom_emprunteur) . '</p>';
                   echo '<p class="card-text">Date de retour : ' . htmlspecialchars($objet['date_retour']) . '</p>';
+                  $jours = jour_disponible($bdd, $objet['id_objet']);
+                  if ($jours > 0) {
+                      echo '<p class="card-text text-danger">Disponible dans : ' . htmlspecialchars($jours) . ' jour(s)</p>';
+                  }
               } else {
                   echo '<p class="card-text">Disponible</p>';
+                  echo '<a class="btn btn-success" href="../pages/emprunt.php?id_objet=' . $objet['id_objet'] . '">Emprunter</a>';
               }
               echo '</div>';
               echo '</div>';

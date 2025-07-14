@@ -66,4 +66,19 @@ function ajouter_objet($bdd, $nom, $id_membre, $id_categorie, $nomImage, $idObje
 
 }
 
+
+function ajouter_emprunt($bdd, $id_objet, $id_membre, $date_retour) {
+    $sql = "INSERT INTO emprunter_emprunt (id_objet, id_membre, date_emprunt, date_retour) VALUES ('%s', '%s', CURDATE(), '%s')";
+    $sql = sprintf($sql, $id_objet, $id_membre, $date_retour);
+    return mysqli_query($bdd, $sql);
+}
+
+function jour_disponible($bdd, $id_objet){
+    $sql = "SELECT TIMESTAMPDIFF(DAY, date_emprunt, date_retour) AS j FROM vue_objet_membre
+            WHERE id_objet = '%s';";
+    $sql = sprintf($sql, $id_objet);
+    $resultat = mysqli_query($bdd, $sql);
+    return $resultat;
+}
+
 ?>
