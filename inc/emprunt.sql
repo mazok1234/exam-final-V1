@@ -35,6 +35,7 @@ CREATE TABLE emprunter_images_objet(
 );
 
 
+
 CREATE TABLE emprunter_emprunt(
     id_emprunt INT AUTO_INCREMENT PRIMARY KEY,
     id_objet INT,
