@@ -21,6 +21,7 @@
         $nbr = count($file['name']);
 
         // $nomImages = [];
+        ajouter_objet($bdd, $nom, $idMembre, $categorie);
 
         for ($i=0;$i<$nbr;$i++){
             if ($file['error'][$i] !== UPLOAD_ERR_OK){
@@ -45,7 +46,7 @@
             // $nomImages[$i] = $newName;
 
             if (move_uploaded_file($file['tmp_name'][$i], $uploadDir . $newName)){
-                ajouter_objet($bdd, $nom, $idMembre, $categorie, $nom, $idObjet);
+                ajouter_image_objet($bdd, $idObjet, $nom);
                 $i++;
                 // header('Location: ../pages/home.php');
                 if ($i == $nbr){

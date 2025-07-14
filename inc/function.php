@@ -52,18 +52,21 @@ function recuperer_dernier_id_objet($bdd){
 }
 
 function ajouter_objet($bdd, $nom, $id_membre, $id_categorie, $nomImage, $idObjet){
-    $sql1 = "INSERT INTO emprunter_objet (nom_objet, id_membre, id_categorie) 
+    $sql = "INSERT INTO emprunter_objet (nom_objet, id_membre, id_categorie) 
              VALUES ('%s', '%s', '%s');";
-    $sql1 = sprintf($sql1, $nom, $id_membre, $id_categorie);
-    $resultat1 = mysqli_query($bdd, $sql1);
+    $sql = sprintf($sql1, $nom, $id_membre, $id_categorie);
+    $resultat = mysqli_query($bdd, $sql1);
 
-    $sql2 = "INSERT INTO emprunter_images_objet (id_objet, nom_image) 
+    return $resultat;
+
+}
+
+function ajouter_image_objet($bdd, $id_objet, $nomImage){
+    $sql = "INSERT INTO emprunter_images_objet (id_objet, nom_image) 
              VALUES ('%s', '%s');";
-    $sql2 = sprintf($sql2, $idObjet, $nomImage);
-    $resultat2 = mysqli_query($bdd, $sql2);
-
-    return $resultat1 && $resultat2;
-
+    $sql = sprintf($sql2, $idObjet, $nomImage);
+    $resultat = mysqli_query($bdd, $sql);
+    return $resultat;
 }
 
 ?>
