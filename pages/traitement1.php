@@ -5,14 +5,14 @@ session_start();
 
 $bdd = dbconnect();
 
-$mail_user = $_POST['mail'];
-$mdp_user = $_POST['pwd'];
+$mail = $_POST['email'];
+$mdp = $_POST['mdp'];
 
-$donnee = verifier_utilisateur($bdd, $mail_user, $mdp_user);
+$donnee = verifier_utilisateur($bdd, $mail, $mdp);
 
 if ($donnee) {
     connecter_utilisateur($donnee);
-    header("Location:../pages/traitement3.php");
+    header("Location:../pages/home.php");
 } else {
     header("Location:../pages/index.php?num=1");
 }

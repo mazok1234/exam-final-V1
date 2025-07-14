@@ -1,8 +1,6 @@
 <?php
 require('../inc/function.php');
-if (isset($_GET['num']) && $_GET['num'] == 1) {
-    echo '<p class="text-danger text-center mt-3">Email ou Mot de Passe incorrect</p>';
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -21,16 +19,21 @@ if (isset($_GET['num']) && $_GET['num'] == 1) {
       <i class="bi bi-camera-video-fill fs-1 text-danger"></i>
       <h2 class="mt-2">Indrana</h2>
       <p class="text-muted">Connectez-vous pour continuer</p>
+      <?php
+      if (isset($_GET['num']) && $_GET['num'] == 1) {
+            echo '<p class="text-danger text-center mt-3">Email ou Mot de Passe incorrect</p>';
+        }
+      ?>
     </div>
 
     <form action="../pages/traitement1.php" method="post">
       <div class="mb-3">
         <label for="email">Adresse e-mail</label>
-        <input type="email" name="mail" id="email" class="form-control bg-light text-dark border-secondary" required>
+        <input type="email" name="email" id="email" class="form-control bg-light text-dark border-secondary" required>
       </div>
       <div class="mb-3">
-        <label for="pwd" class="form-label">Mot de passe</label>
-        <input type="password" name="pwd" id="pwd" class="form-control bg-light text-dark border-secondary" required>
+        <label for="mdp" class="form-label">Mot de passe</label>
+        <input type="password" name="mdp" id="mdp" class="form-control bg-light text-dark border-secondary" required>
       </div>
       <button type="submit" class="btn btn-danger w-100">Se connecter</button>
     </form>

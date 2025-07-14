@@ -46,10 +46,10 @@ CREATE TABLE emprunter_emprunt(
 
 
 INSERT INTO emprunter_membre (nom, prenom, date_naissance, genre, email, ville, mdp, image_profil) VALUES
-('Dupont', 'Jean', '1990-05-12', 'Homme', 'jean.dupont@email.com', 'Paris', 'mdp123', 'pdp1.jpg'),
-('Martin', 'Sophie', '1985-08-23', 'Femme', 'sophie.martin@email.com', 'Lyon', 'mdp456', 'pdp2.jpg'),
-('Durand', 'Paul', '1992-11-03', 'Homme', 'paul.durand@email.com', 'Marseille', 'mdp789', 'pdp3.jpg'),
-('Lefevre', 'Claire', '1988-02-17', 'Femme', 'claire.lefevre@email.com', 'Toulouse', 'mdp321', 'pdp4.jpg');
+('Dupont', 'Jean', '1990-05-12', 'M', 'jean.dupont@email.com', 'Paris', 'mdp123', 'pdp1.jpg'),
+('Martin', 'Sophie', '1985-08-23', 'F', 'sophie.martin@email.com', 'Lyon', 'mdp456', 'pdp2.jpg'),
+('Durand', 'Paul', '1992-11-03', 'M', 'paul.durand@email.com', 'Marseille', 'mdp789', 'pdp3.jpg'),
+('Lefevre', 'Claire', '1988-02-17', 'F', 'claire.lefevre@email.com', 'Toulouse', 'mdp321', 'pdp4.jpg');
 
 
 INSERT INTO emprunter_categorie_objet (nom_categorie) VALUES
