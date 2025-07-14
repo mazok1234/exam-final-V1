@@ -116,3 +116,21 @@ INSERT INTO emprunter_emprunt (id_objet, id_membre, date_emprunt, date_retour) V
 (8, 1, '2024-06-08', '2024-06-17'),
 (9, 2, '2024-06-09', '2024-06-18'),
 (10, 3, '2024-06-10', '2024-06-19');
+
+CREATE OR REPLACE VIEW vue_objets_membre AS
+SELECT o.id_objet, o.nom_objet, c.nom_categorie, o.id_membre,
+       e.date_retour,
+       m.nom AS nom_emprunteur, m.prenom AS prenom_emprunteur
+FROM emprunter_objet o
+JOIN emprunter_categorie_objet c ON o.id_categorie = c.id_categorie
+LEFT JOIN emprunter_emprunt e ON o.id_objet = e.id_objet AND e.date_retour IS NOT NULL
+LEFT JOIN emprunter_membre m ON e.id_membre = m.id_membre;
+
+CREATE OR REPLACE VIEW vue_objets_categorie AS
+SELECT o.id_objet, o.nom_objet, c.nom_categorie,
+       m.nom AS nom_emprunteur, m.prenom AS prenom_emprunteur,
+       e.date_emprunt, e.date_retour
+FROM emprunter_objet o
+JOIN emprunter_categorie_objet c ON o.id_categorie = c.id_categorie
+LEFT JOIN emprunter_emprunt e ON o.id_objet = e.id_objet
+LEFT JOIN emprunter_membre m ON e.id_membre = m.id_membre;

@@ -1,3 +1,4 @@
+
 <?php
     function verifier_utilisateur($bdd, $email, $motdepasse) {
     $requete = "SELECT * FROM emprunter_membre WHERE email = '%s' AND mdp = '%s'";
@@ -17,10 +18,30 @@ function inserer_utilisateur($bdd, $nom, $prenom, $dtn, $genre, $email, $ville, 
     return mysqli_query($bdd, $sql);
 }
 
-function recuperer_utilisateur($bdd, $email, $mdp) {
-    $requete = "SELECT * FROM emprunter_membre WHERE email = '%s' AND mdp = '%s'";
-    $requete = sprintf($requete, $email, $mdp);
+function recuperer_utilisateur($bdd, $id) {
+    $requete = "SELECT * FROM emprunter_membre WHERE id_membre = '%s'";
+    $requete = sprintf($requete, $id);
     $resultat = mysqli_query($bdd, $requete);
-    return mysqli_fetch_assoc($resultat);
+    return $resultat;
+}
+
+function liste_categories($bdd) {
+    $sql = "SELECT * FROM emprunter_categorie_objet;";
+    $resultat = mysqli_query($bdd, $sql);
+    return $resultat;
+}
+
+function lister_objets_membre($bdd, $id_membre) {
+    $sql = "SELECT * FROM vue_objets_membre;";
+    $resultat = mysqli_query($bdd, $sql);
+    return $resultat;    
+}
+
+function liste_objets_categorie($bdd, $categorie){
+    $sql = "SELECT * FROM vue_objet_categorie
+            WHERE nom_categorie = '%s';";
+    $sql = sprintf($sql, $categorie);
+    $resultat = mysqli_query($bdd, $sql);
+    return $resultat;
 }
 ?>

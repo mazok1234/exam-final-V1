@@ -18,6 +18,8 @@ Creer les pages:
             _creer function : (OK)
                 &verifier_utilisateur
                 & connecter_utilisateur
-                &inserer_utilisateur et recuperer_utilisateur OK 
+                &inserer_utilisateur et recuperer_utilisateur OK
+        **creer home.php:
+            _afficher les informations  
     -Liste des objets , (avec date de retour si emprunt en cours )
     -Filtre par catégorie
