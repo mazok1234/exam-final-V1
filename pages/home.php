@@ -10,8 +10,6 @@
     $categorie = liste_categories($bdd);
 
     $donnee = mysqli_fetch_assoc(recuperer_utilisateur($bdd, $id_membre));
-
-    echo $_POST['nomCat'];   
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +42,7 @@
             <input type="submit" value="Filtrer">
         </form>
       <?php
-      if (!isset($_POST['numCat'])){
+      if (!isset($_POST['nomCat'])){
           $resultat = lister_objets_membre($bdd, $id_membre);
           if ($resultat && mysqli_num_rows($resultat) > 0) {
               while ($objet = mysqli_fetch_assoc($resultat)) {
@@ -71,7 +69,7 @@
               echo '<p>Aucun objet trouvé.</p>';
           }
       }
-      if (isset($_POST['numCat'])){
+      if (isset($_POST['nomCat'])){
           $categorie = $_POST['nomCat'];
           $resultat = liste_objets_categorie($bdd, $categorie);
           if (mysqli_num_rows($resultat) > 0) {

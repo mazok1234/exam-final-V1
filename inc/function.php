@@ -38,8 +38,8 @@ function lister_objets_membre($bdd, $id_membre) {
 }
 
 function liste_objets_categorie($bdd, $categorie){
-    $sql = "SELECT * FROM vue_objet_categorie
-            WHERE nom_categorie = '%s';";
+    // Correction : utiliser la bonne vue et vérifier la requête
+    $sql = "SELECT * FROM vue_objets_membre WHERE nom_categorie = '%s';";
     $sql = sprintf($sql, $categorie);
     $resultat = mysqli_query($bdd, $sql);
     return $resultat;
