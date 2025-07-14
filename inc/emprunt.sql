@@ -34,6 +34,7 @@ CREATE TABLE emprunter_images_objet(
     FOREIGN KEY (id_objet) REFERENCES emprunter_objet(id_objet)
 );
 
+
 CREATE TABLE emprunter_emprunt(
     id_emprunt INT AUTO_INCREMENT PRIMARY KEY,
     id_objet INT,
