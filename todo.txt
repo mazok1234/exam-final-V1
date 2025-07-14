@@ -4,7 +4,7 @@ Creer les Bases:(ok)
     -objet (id_objet , nom_objet , id_categorie, id_membre)
     -images_objet(id_image, id_objet, nom_image)
     -emprunt(id_emprunt, id_objet, id_membre, date_emprunt, date_retour)
-
+Version 1 (OK)
 
 Inserer donnees:(ok)
     -4 membres
@@ -19,7 +19,14 @@ Creer les pages:
                 &verifier_utilisateur
                 & connecter_utilisateur
                 &inserer_utilisateur et recuperer_utilisateur OK
-        **creer home.php:
+        **creer home.php:(ok)
             _afficher les informations  
-    -Liste des objets , (avec date de retour si emprunt en cours )
-    -Filtre par catégorie
+    -Liste des objets , (avec date de retour si emprunt en cours )(ok)
+    -Filtre par catégorie(ok)
+
+
+Version 2
+
+    -amelioration du design maximum
+    -affichage image de chaque objet 
+    
